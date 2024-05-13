@@ -25,50 +25,74 @@ function getHumanChoice() {
     else if (getPrompt == 2) {
         humanChoice = "scissors";
     }
+    else {
+        alert("Invalid input. Please try again.");
+        humanChoice = getHumanChoice(); 
+    }
+    
     return humanChoice;
+    
 }
 
-function compareChoices(comp, human) {
-    var result;
+let humanScore = 0;
+let computerScore = 0;
+
+function playRound(computerChoice, humanChoice) {
+    let result = "";
+    let comp = computerChoice.toLowerCase();
+    let human = humanChoice.toLowerCase();
+    console.log("Computer Chose:" + comp);
+    console.log("You chose:" + human);
     if (comp == "rock" && human == "paper") {
-        result = "Congrats - you won!";
+        result = "Paper beats rock - you win that round!";
+        console.log(result);
+        humanScore++;
     }
     else if (comp == "rock" && human == "scissors") {
-        result = "Sorry - you lost!"
+        console.log(result = "Rock beats scissors - you lost this one...");
+        computerScore++;
     }
     else if (comp == "rock" && human == "rock") {
-        result = "Wow - It's a tie!"
+        console.log(result = "Wow - It's a tie!");
     }
     else if (comp == "paper" && human == "paper") {
-        result = "Wow - It's a tie!"
+        console.log(result = "Wow - It's a tie!");
     }
     else if (comp == "paper" && human == "rock") {
-        result = "Sorry - you lost!"
+        console.log(result = "Paper beats rock - you lost this one...");
+        computerScore++;
     }
     else if (comp == "paper" && human == "scissors") {
-        result = "Congrats - you won!"
+        console.log(result = "Scissors beats paper - you win that round!");
+        humanScore++;
     }
     else if (comp == "scissors" && human == "scissors") {
-        result = "Wow - It's a tie!"
+        console.log(result = "Wow - It's a tie!");
     }
     else if (comp == "scissors" && human == "rock") {
-        result = "Congrats - you won!"
+        console.log(result = "Rock beats scissors - you win that round!");
+        humanScore++;
     }
     else if (comp == "scissors" && human == "paper") {
-        result = "Sorry - you list!"
+        console.log(result = "Scissors beats paper - you lost this one...");
+        computerScore++
     }
     else {
-        result = "something went wrong..."
+        console.log(result = "something went wrong...");
     }
-    return result;
+
 }
 
-let computerPlay = getComputerChoice();
-let humanPlay = getHumanChoice();
-let result = compareChoices(computerPlay, humanPlay);
-console.log("Computer chose:" + computerPlay);
-console.log("You chose:" + humanPlay)
-console.log(result);
+
+
+while (humanScore < 5 && computerScore < 5) {
+    let computerSelection = getComputerChoice();
+    let humanSelection = getHumanChoice();
+    playRound(computerSelection, humanSelection);
+}
+console.log("Game over!");
+console.log("Human Score: " + humanScore);
+console.log("Computer Score: " + computerScore);
 
 
 
